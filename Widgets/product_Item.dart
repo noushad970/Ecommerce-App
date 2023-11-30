@@ -42,5 +42,8 @@ class ProductItem extends StatelessWidget {
           ),
         ));
   }
+
+  void thankYou() {
+    print("thank You");
+  }
 }
-//comments
