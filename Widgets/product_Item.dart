@@ -4,8 +4,6 @@ import 'package:provider/provider.dart';
 import '../screens/product_detail_screen.dart';
 
 class ProductItem extends StatelessWidget {
-  
-
   @override
   Widget build(BuildContext context) {
     final product = Provider.of<Product>(context);
@@ -26,6 +24,7 @@ class ProductItem extends StatelessWidget {
             backgroundColor: Colors.black87,
             leading: IconButton(
                 onPressed: () {
+                  //this will execute that the file is favourite or not
                   product.toggleFavouriteStatus();
                 },
                 icon: Icon(product.isFavourite
