@@ -6,6 +6,7 @@ class Product with ChangeNotifier {
   final String Discription;
   final String imageUrl;
   final double price;
+  
   bool isFavourite;
   Product(
       {required this.id,
