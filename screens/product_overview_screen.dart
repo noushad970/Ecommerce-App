@@ -1,5 +1,6 @@
 import 'package:e_shop_today/providers/cart.dart';
 import 'package:e_shop_today/providers/product.dart';
+import 'package:e_shop_today/screens/Cart_Screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../Widgets/product_grid.dart';
@@ -56,8 +57,11 @@ class _ProductOverviewScreenState extends State<ProductOverviewScreen> {
                 label: Text(cart.itemCount.toString()),
               ),
               child: IconButton(
+                alignment: Alignment.center,
                 icon: Icon(Icons.shopping_cart),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).pushNamed(CartScreen.routeName);
+                },
               ),
             ),
           ],
