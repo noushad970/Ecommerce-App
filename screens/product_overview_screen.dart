@@ -1,3 +1,7 @@
+import 'package:e_shop_today/Widgets/App_Drawer.dart';
+import 'package:e_shop_today/Widgets/App_Drawer.dart';
+import 'package:e_shop_today/Widgets/App_Drawer.dart';
+import 'package:e_shop_today/Widgets/App_Drawer.dart';
 import 'package:e_shop_today/providers/cart.dart';
 import 'package:e_shop_today/providers/product.dart';
 import 'package:e_shop_today/screens/Cart_Screen.dart';
@@ -18,7 +22,7 @@ class ProductOverviewScreen extends StatefulWidget {
 }
 
 class _ProductOverviewScreenState extends State<ProductOverviewScreen> {
-  bool showOnlyFavourite = false;
+  bool _showOnlyFavourite = false;
   @override
   Widget build(BuildContext context) {
     //  final productContainer = Provider.of<Products>(context, listen: false);
@@ -31,10 +35,10 @@ class _ProductOverviewScreenState extends State<ProductOverviewScreen> {
                 setState(() {
                   if (SelectedValue == FilterOptions.Favourite) {
                     // productContainer.showFavouriteOnly();
-                    showOnlyFavourite = true;
+                    _showOnlyFavourite = true;
                   } else {
                     //  productContainer.showAll();
-                    showOnlyFavourite = false;
+                    _showOnlyFavourite = false;
                   }
                 });
               },
@@ -67,6 +71,7 @@ class _ProductOverviewScreenState extends State<ProductOverviewScreen> {
           ],
           title: Text('MyShop'),
         ),
-        body: productGrid(showOnlyFavourite));
+        drawer: AppDrawer(),
+        body: productGrid(_showOnlyFavourite));
   }
 }
