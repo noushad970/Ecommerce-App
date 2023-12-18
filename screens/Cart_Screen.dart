@@ -38,7 +38,7 @@ class CartScreen extends StatelessWidget {
                         child: Text('Order Now'),
                         onPressed: () {
                           Provider.of<Orders>(context, listen: false).addOrder(
-                              cart.item.values.toList(), cart.totalAmount);
+                              cart.items.values.toList(), cart.totalAmount);
                           cart.clear();
                         })
                   ],
@@ -51,12 +51,12 @@ class CartScreen extends StatelessWidget {
             Expanded(
                 child: ListView.builder(
               itemBuilder: (ctx, i) => ci.CartItem(
-                  cart.item.values.toList()[i].id,
-                  cart.item.values.toList()[i].title,
-                  cart.item.values.toList()[i].quantity,
-                  cart.item.values.toList()[i].price,
-                  cart.item.keys.toList()[i]),
-              itemCount: cart.item.length,
+                  cart.items.values.toList()[i].id,
+                  cart.items.values.toList()[i].title,
+                  cart.items.values.toList()[i].quantity,
+                  cart.items.values.toList()[i].price,
+                  cart.items.keys.toList()[i]),
+              itemCount: cart.items.length,
             ))
           ],
         ));
