@@ -23,6 +23,35 @@ class CartItem extends StatelessWidget {
           padding: EdgeInsets.only(right: 20),
         ),
         direction: DismissDirection.endToStart,
+        //this widget is to make confirm with the decision
+        confirmDismiss: (direction) {
+          return showDialog(
+              context: context,
+              builder: (ctx) => AlertDialog(
+                    title: Text('Are you sure?'),
+                    content: Text('Do you want to delete the product?'),
+                    actions: <Widget>[
+                      ElevatedButton(
+                        onPressed: () {
+                          Navigator.of(ctx).pop(false);
+                        },
+                        child: Text('No'),
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.red,
+                        ),
+                      ),
+                      ElevatedButton(
+                        onPressed: () {
+                          Navigator.of(ctx).pop(true);
+                        },
+                        child: Text('Yes'),
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.red,
+                        ),
+                      ),
+                    ],
+                  ));
+        },
         onDismissed: (direction) {
           Provider.of<Cart>(context, listen: false).removeItem(productId);
         },

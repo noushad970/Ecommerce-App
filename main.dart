@@ -2,6 +2,8 @@ import 'package:e_shop_today/providers/cart.dart';
 import 'package:e_shop_today/providers/orders.dart';
 import 'package:e_shop_today/screens/Cart_Screen.dart';
 import 'package:e_shop_today/screens/Orders_Screen.dart';
+import 'package:e_shop_today/screens/edit_product_screen.dart';
+import 'package:e_shop_today/screens/users_product_Screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import './screens/product_overview_screen.dart';
@@ -40,6 +42,8 @@ class MyApp extends StatelessWidget {
               ProductDetailScreen.routeName: (ctx) => ProductDetailScreen(),
               CartScreen.routeName: (ctx) => CartScreen(),
               OrderScreen.routeName: (ctx) => OrderScreen(),
+              UserProductsScreen.routeName: (ctx) => UserProductsScreen(),
+              EditProductScreen.routeName: (ctx) => EditProductScreen(),
             }));
   }
 }

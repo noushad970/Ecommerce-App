@@ -13,15 +13,25 @@ class ProductItem extends StatelessWidget {
         borderRadius: BorderRadius.circular(10),
         child: GridTile(
           child: GestureDetector(
-            onTap: () {
-              Navigator.of(context).pushNamed(ProductDetailScreen.routeName,
-                  arguments: product.id);
-            },
-            child: Image.network(
+              onTap: () {
+                Navigator.of(context).pushNamed(ProductDetailScreen.routeName,
+                    arguments: product.id);
+              },
+              child: Container(
+                  width: 150,
+                  height: 150,
+                  margin: EdgeInsets.only(top: 8, right: 10),
+                  decoration: BoxDecoration(
+                    border: Border.all(width: 1, color: Colors.white),
+                  ),
+                  child: FittedBox(
+                    child: Image.network(product.imageUrl),
+                  ))
+              /*Image.network(
               product.imageUrl,
               fit: BoxFit.cover,
-            ),
-          ),
+            ),*/
+              ),
           footer: GridTileBar(
             backgroundColor: Colors.black87,
             leading: Consumer<Product>(
