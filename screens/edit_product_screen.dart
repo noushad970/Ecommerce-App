@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:e_shop_today/providers/product.dart';
 import 'package:e_shop_today/providers/products.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +6,8 @@ import 'package:provider/provider.dart';
 class EditProductScreen extends StatefulWidget {
   static const routeName = '/edit-product';
 
+  const EditProductScreen({super.key});
+
   @override
   State<EditProductScreen> createState() => _EditProductScreenState();
 }
@@ -15,6 +15,7 @@ class EditProductScreen extends StatefulWidget {
 class _EditProductScreenState extends State<EditProductScreen> {
   final _priceFocusNode = FocusNode();
   final _discriptionNode = FocusNode();
+  // ignore: non_constant_identifier_names
   final _ImageUrlController = TextEditingController();
   final _imageUrlFocusedNode = FocusNode();
   final _form = GlobalKey<FormState>();
@@ -23,11 +24,13 @@ class _EditProductScreenState extends State<EditProductScreen> {
 
   var _initValue = {
     'title': '',
-    'Discription': '',
+    'discription': '',
     'imageUrl': '',
     'price': ''
   };
+
   var _isInit = true;
+
   @override
   void initState() {
     _ImageUrlController.addListener(_UpdateImgUrl);
@@ -36,22 +39,26 @@ class _EditProductScreenState extends State<EditProductScreen> {
 
   @override
   void didChangeDependencies() {
-    // if (_isInit) {
-    //   final productId = ModalRoute.of(context)!.settings.arguments as String;
-    //   if (productId != null) {
-    //     _editedProduct =
-    //         Provider.of<Products>(context, listen: false).findByID(productId);
-
-    //     _initValue = {
-    //       'title': _editedProduct.title,
-    //       'description': _editedProduct.Discription,
-    //       'imageUrl': '',
-    //       'price': _editedProduct.price.toString(),
-    //     };
-    //     _ImageUrlController.text = _editedProduct.imageUrl;
-    //   }
+    // if (!_isInit) {
+    //   return;
     // }
-    // _isInit = false;
+    if (_isInit) {
+      final productId = ModalRoute.of(context)?.settings.arguments as String;
+      // ignore: unnecessary_null_comparison
+      if (!productId.isEmpty) {
+        _editedProduct =
+            Provider.of<Products>(context, listen: false).findByID(productId);
+
+        _initValue = {
+          'title': _editedProduct.title,
+          'discription': _editedProduct.Discription,
+          'imageUrl': '',
+          'price': _editedProduct.price.toString(),
+        };
+        _ImageUrlController.text = _editedProduct.imageUrl;
+      }
+    }
+    _isInit = false;
     super.didChangeDependencies();
   }
 
@@ -65,6 +72,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
     super.dispose();
   }
 
+  // ignore: non_constant_identifier_names
   void _UpdateImgUrl() {
     if (!_imageUrlFocusedNode.hasFocus) {
       if ((!_ImageUrlController.text.startsWith('http') &&
@@ -111,7 +119,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
                 children: <Widget>[
                   TextFormField(
                     initialValue: _initValue['title'],
-                    decoration: InputDecoration(labelText: 'Title'),
+                    decoration: const InputDecoration(labelText: 'Title'),
                     textInputAction: TextInputAction.next,
                     onFieldSubmitted: (_) {
                       FocusScope.of(context).requestFocus(_priceFocusNode);
@@ -165,7 +173,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
                     },
                   ),
                   TextFormField(
-                    initialValue: _initValue['description'],
+                    initialValue: _initValue['discription'],
                     decoration: InputDecoration(labelText: 'Description'),
                     maxLines: 3,
                     keyboardType: TextInputType.multiline,
