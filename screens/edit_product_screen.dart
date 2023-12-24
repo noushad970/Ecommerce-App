@@ -38,14 +38,20 @@ class _EditProductScreenState extends State<EditProductScreen> {
 
     super.initState();
   }
-  /*//problem is not taking input in add product when the full function is applied
 
+  //problem is not taking input in add product when the full function is applied
+  /*
   @override
   void didChangeDependencies() {
     if (_isInit1) {
-      final productId = ModalRoute.of(context)!.settings.arguments as String;
-      // ignore: unnecessary_null_comparison
-      if (productId != null) {
+      final args = ModalRoute.of(context)!.settings.arguments;
+      if (args != null) {
+        final productId = args.toString(); // Hoping only string will be there.
+        /// Rest of the code
+
+        //final productId = ModalRoute.of(context)!.settings.arguments as String ;//?? "";
+        // ignore: unnecessary_null_comparison
+
         _editedProduct =
             Provider.of<Products>(context, listen: false).findByID(productId);
 
@@ -61,7 +67,33 @@ class _EditProductScreenState extends State<EditProductScreen> {
     _isInit1 = false;
     super.didChangeDependencies();
     // fetchData();
-  }*/
+  }
+
+  */
+  @override
+  void didChangeDependencies() {
+    if (_isInit1) {
+      final productId = ModalRoute.of(context)!.settings.arguments; //?? "";
+      // ignore: unnecessary_null_comparison
+      if (productId != null) {
+        _editedProduct = Provider.of<Products>(context, listen: false)
+            .findByID(productId.toString());
+
+        _initValue = {
+          'title': _editedProduct.title,
+          'discription': _editedProduct.Discription,
+          'imageUrl': '',
+          'price': _editedProduct.price.toString(),
+        };
+        _ImageUrlController.text = _editedProduct.imageUrl;
+      }
+    }
+    _isInit1 = false;
+    final id = ModalRoute.of(context)!.settings.arguments as String;
+    Provider.of<Products>(context).DeleteProduct(id);
+    super.didChangeDependencies();
+    // fetchData();
+  }
 
   @override
   void dispose() {
@@ -98,33 +130,36 @@ class _EditProductScreenState extends State<EditProductScreen> {
     setState(() {
       _isLoading = true;
     });
-    //if (_editedProduct.id != Null) {
-    // Provider.of<Products>(context, listen: false)
-    //     .UpdateProduct(_editedProduct.id, _editedProduct);
-    // } else {
-    try {
-      Provider.of<Products>(context, listen: false).addProduct(_editedProduct);
-    } catch (Exception) {
-      showDialog<Null>(
-          context: context,
-          builder: (ctx) => AlertDialog(
-                title: Text('An error has occurred!'),
-                content: Text('Something went wrong.'),
-                actions: [
-                  FloatingActionButton(
-                    onPressed: () {
-                      Navigator.of(ctx).pop();
-                    },
-                    child: Text('Okay'),
-                  )
-                ],
-              ));
-    } finally {
-      setState(() {
-        _isLoading = false;
-      });
-      Navigator.of(context).pop();
+    //causing error.when i edit and save product it took another item placeholder
+    if (_editedProduct.id != Null) {
+      Provider.of<Products>(context, listen: false)
+          .UpdateProduct(_editedProduct.id, _editedProduct);
+    } else {
+      try {
+        Provider.of<Products>(context, listen: false)
+            .addProduct(_editedProduct);
+      } catch (Exception) {
+        showDialog<Null>(
+            context: context,
+            builder: (ctx) => AlertDialog(
+                  title: Text('An error has occurred!'),
+                  content: Text('Something went wrong.'),
+                  actions: [
+                    FloatingActionButton(
+                      onPressed: () {
+                        Navigator.of(ctx).pop();
+                      },
+                      child: Text('Okay'),
+                    )
+                  ],
+                ));
+      } finally {
+        setState(() {
+          _isLoading = false;
+        });
+      }
     }
+    Navigator.of(context).pop();
   }
 
   @override
