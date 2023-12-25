@@ -16,6 +16,7 @@ class ProductDetailScreen extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           title: Text(loadedProduct.title),
+           backgroundColor: Color.fromARGB(255, 0, 187, 255),
         ),
         body: SingleChildScrollView(
             child: Column(children: <Widget>[

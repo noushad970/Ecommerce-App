@@ -15,12 +15,18 @@ class EditProductScreen extends StatefulWidget {
 class _EditProductScreenState extends State<EditProductScreen> {
   final _priceFocusNode = FocusNode();
   final _discriptionNode = FocusNode();
+
   // ignore: non_constant_identifier_names
   final _ImageUrlController = TextEditingController();
   final _imageUrlFocusedNode = FocusNode();
   final _form = GlobalKey<FormState>();
-  var _editedProduct =
-      Product(id: '', title: '', Discription: '', imageUrl: '', price: 0);
+  var _editedProduct = Product(
+      id: '',
+      title: '',
+      Discription: '',
+      imageUrl: '',
+      price: 0,
+      isFavourite: false);
 
   var _initValue = {
     'title': '',
@@ -40,7 +46,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
   }
 
   //problem is not taking input in add product when the full function is applied
-  /*
+
   @override
   void didChangeDependencies() {
     if (_isInit1) {
@@ -60,6 +66,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
           'discription': _editedProduct.Discription,
           'imageUrl': '',
           'price': _editedProduct.price.toString(),
+          //'isFavorite': _editedProduct.isFavourite.toString(),
         };
         _ImageUrlController.text = _editedProduct.imageUrl;
       }
@@ -69,7 +76,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
     // fetchData();
   }
 
-  */
+  /*
   @override
   void didChangeDependencies() {
     if (_isInit1) {
@@ -94,7 +101,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
     super.didChangeDependencies();
     // fetchData();
   }
-
+*/
   @override
   void dispose() {
     _imageUrlFocusedNode.removeListener(_UpdateImgUrl);
@@ -102,6 +109,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
     _discriptionNode.dispose();
     _ImageUrlController.dispose();
     _imageUrlFocusedNode.dispose();
+    
     super.dispose();
   }
 
@@ -123,21 +131,20 @@ class _EditProductScreenState extends State<EditProductScreen> {
   Future<void> _saveForm() async {
     final isValid = _form.currentState!.validate(); //
 
-    if (!isValid) {
-      return;
-    }
+    // if (!isValid) {
+    //   return;
+    // }
     _form.currentState!.save();
     setState(() {
       _isLoading = true;
     });
     //causing error.when i edit and save product it took another item placeholder
-    if (_editedProduct.id != Null) {
-      Provider.of<Products>(context, listen: false)
-          .UpdateProduct(_editedProduct.id, _editedProduct);
-    } else {
+    if (_editedProduct.Discription != null) {
       try {
         Provider.of<Products>(context, listen: false)
             .addProduct(_editedProduct);
+        Provider.of<Products>(context, listen: false)
+            .DeleteProduct(_editedProduct.id);
       } catch (Exception) {
         showDialog<Null>(
             context: context,
@@ -153,11 +160,17 @@ class _EditProductScreenState extends State<EditProductScreen> {
                     )
                   ],
                 ));
+        Navigator.of(context).pop();
       } finally {
         setState(() {
           _isLoading = false;
         });
       }
+      //
+    } else {
+      Provider.of<Products>(context, listen: false)
+          .UpdateProduct(_editedProduct.id, _editedProduct);
+      print('1');
     }
     Navigator.of(context).pop();
   }
@@ -167,6 +180,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
     return Scaffold(
         appBar: AppBar(
           title: Text('Edit Product'),
+           backgroundColor: Color.fromARGB(255, 0, 187, 255),
           actions: <Widget>[
             IconButton(icon: Icon(Icons.save), onPressed: _saveForm)
           ],

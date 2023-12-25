@@ -1,5 +1,6 @@
 import 'package:e_shop_today/providers/cart.dart';
 import 'package:e_shop_today/providers/product.dart';
+import 'package:e_shop_today/providers/products.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../screens/product_detail_screen.dart';
@@ -40,6 +41,8 @@ class ProductItem extends StatelessWidget {
                     //this will execute that the file is favourite or not
                     product.toggleFavouriteStatus();
                     if (product.isFavourite) {
+                      //
+
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
                           content: Text('Added to favorites'),

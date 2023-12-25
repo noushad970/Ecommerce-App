@@ -95,6 +95,7 @@ class _ProductOverviewScreenState extends State<ProductOverviewScreen> {
             ),
           ],
           title: Text('MyShop'),
+           backgroundColor: Color.fromARGB(255, 0, 187, 255),
         ),
         drawer: AppDrawer(),
         body: _isLoading

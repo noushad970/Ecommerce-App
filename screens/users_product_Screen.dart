@@ -17,6 +17,7 @@ class UserProductsScreen extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           title: Text('Your Products'),
+          backgroundColor: Color.fromARGB(255, 0, 187, 255),
           actions: <Widget>[
             IconButton(
                 onPressed: () {

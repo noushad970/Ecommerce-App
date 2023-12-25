@@ -11,6 +11,7 @@ class AppDrawer extends StatelessWidget {
           AppBar(
             title: Text('Hello Friends!'),
             automaticallyImplyLeading: false,
+            backgroundColor: Color.fromARGB(255, 0, 234, 255),
           ),
           Divider(),
           ListTile(
