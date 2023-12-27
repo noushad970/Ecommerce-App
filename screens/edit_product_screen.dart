@@ -109,7 +109,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
     _discriptionNode.dispose();
     _ImageUrlController.dispose();
     _imageUrlFocusedNode.dispose();
-    
+
     super.dispose();
   }
 
@@ -180,7 +180,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
     return Scaffold(
         appBar: AppBar(
           title: Text('Edit Product'),
-           backgroundColor: Color.fromARGB(255, 0, 187, 255),
+          backgroundColor: Color.fromARGB(255, 0, 187, 255),
           actions: <Widget>[
             IconButton(icon: Icon(Icons.save), onPressed: _saveForm)
           ],

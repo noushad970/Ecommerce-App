@@ -1,3 +1,4 @@
+import 'package:e_shop_today/providers/auth.dart';
 import 'package:e_shop_today/providers/cart.dart';
 import 'package:e_shop_today/providers/product.dart';
 import 'package:e_shop_today/providers/products.dart';
@@ -10,6 +11,7 @@ class ProductItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final product = Provider.of<Product>(context, listen: false);
     final cart = Provider.of<Cart>(context, listen: false);
+    final authData = Provider.of<Auth>(context, listen: false);
     return ClipRRect(
         borderRadius: BorderRadius.circular(10),
         child: GridTile(
@@ -39,7 +41,8 @@ class ProductItem extends StatelessWidget {
               builder: (ctx, product, _) => IconButton(
                   onPressed: () {
                     //this will execute that the file is favourite or not
-                    product.toggleFavouriteStatus();
+                    product.toggleFavouriteStatus(
+                        authData.token.toString(), authData.userId.toString());
                     if (product.isFavourite) {
                       //
 
