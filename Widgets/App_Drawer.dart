@@ -1,3 +1,4 @@
+import 'package:e_shop_today/Admin/AdminLogin.dart';
 import 'package:e_shop_today/providers/auth.dart';
 import 'package:e_shop_today/screens/Orders_Screen.dart';
 import 'package:e_shop_today/screens/users_product_Screen.dart';
@@ -32,6 +33,14 @@ class AppDrawer extends StatelessWidget {
               }),
           Divider(),
           ListTile(
+              leading: Icon(Icons.payment),
+              title: Text('Admin Panel'),
+              onTap: () {
+                Navigator.of(context)
+                    .pushReplacementNamed(AdminLogin.routeName);
+              }),
+          Divider(),
+          ListTile(
               leading: Icon(Icons.edit),
               title: Text('Manage Products'),
               onTap: () {
@@ -44,6 +53,7 @@ class AppDrawer extends StatelessWidget {
               title: Text('Logout'),
               onTap: () {
                 Navigator.of(context).pop();
+                Navigator.of(context).pushReplacementNamed('/');
                 Provider.of<Auth>(context, listen: false).logout();
               }),
         ],

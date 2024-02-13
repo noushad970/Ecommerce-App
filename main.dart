@@ -1,12 +1,14 @@
+import 'package:e_shop_today/Admin/AdminLogin.dart';
 import 'package:e_shop_today/providers/auth.dart';
 import 'package:e_shop_today/providers/cart.dart';
 import 'package:e_shop_today/providers/orders.dart';
-import 'package:e_shop_today/providers/product.dart';
-import 'package:e_shop_today/screens/264%20auth_screen.dart';
+import 'package:e_shop_today/screens/auth_screen.dart';
 import 'package:e_shop_today/screens/Cart_Screen.dart';
 import 'package:e_shop_today/screens/Orders_Screen.dart';
 import 'package:e_shop_today/screens/edit_product_screen.dart';
+import 'package:e_shop_today/screens/splash_screen.dart';
 import 'package:e_shop_today/screens/users_product_Screen.dart';
+//import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import './screens/product_overview_screen.dart';
@@ -14,6 +16,8 @@ import './screens/product_detail_screen.dart';
 import './providers/products.dart';
 
 void main() {
+  // WidgetsFlutterBinding.ensureInitialized();
+  //await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
@@ -27,12 +31,13 @@ class MyApp extends StatelessWidget {
           ChangeNotifierProvider.value(
             value: Auth(),
           ),
+          ChangeNotifierProvider(create: (ctx) => Auth()),
           ChangeNotifierProxyProvider<Auth, Products>(
-            update: (ctx, auth, previousProducts) => Products(
+            create: (ctx) => Products('', '', []),
+            update: (ctx, auth, previousProductsProviderState) => Products(
                 auth.token!,
                 auth.userId!,
-                previousProducts == null ? [] : previousProducts.items),
-            create: (_) => Products('', '', []),
+                previousProductsProviderState!.items),
           ),
           ChangeNotifierProvider.value(
             value: Cart(),
@@ -52,7 +57,15 @@ class MyApp extends StatelessWidget {
                     theme: ThemeData(
                       primarySwatch: Colors.purple,
                     ),
-                    home: auth.isAuth ? ProductOverviewScreen() : AuthScreen(),
+                    home: auth.isAuth
+                        ? ProductOverviewScreen()
+                        : FutureBuilder(
+                            future: auth.tryAutoLogin(),
+                            builder: (ctx, authresultSnapShot) =>
+                                authresultSnapShot.connectionState ==
+                                        ConnectionState.waiting
+                                    ? SplashScreen()
+                                    : AuthScreen()),
                     routes: {
                       ProductDetailScreen.routeName: (ctx) =>
                           ProductDetailScreen(),
@@ -61,6 +74,7 @@ class MyApp extends StatelessWidget {
                       UserProductsScreen.routeName: (ctx) =>
                           UserProductsScreen(),
                       EditProductScreen.routeName: (ctx) => EditProductScreen(),
+                      AdminLogin.routeName: (ctx) => AdminLogin(),
                     })));
   }
 }

@@ -8,9 +8,6 @@ class Products with ChangeNotifier {
 
   List<Product> _items = [];
   List<Product> get items {
-    // if (_showFavouriteOnly) {
-    //   return _items.where((prodItem) => prodItem.isFavourite).toList();
-    // }
     return [..._items];
   }
 
@@ -21,15 +18,7 @@ class Products with ChangeNotifier {
   final String authToken;
   final String userId;
   Products(this.authToken, this.userId, this._items);
-  // void showFavouriteOnly() {
-  //   _showFavouriteOnly = true;
-  //   notifyListeners();
-  // }
 
-  // void showAll() {
-  //   _showFavouriteOnly = false;
-  //   notifyListeners();
-  // }
   Future<void> fetchAndSetProduct([bool filterByUser = false]) async {
     String filterString =
         filterByUser ? 'orderBy="creatorId"&equalTo="$userId"' : '';
@@ -101,16 +90,6 @@ class Products with ChangeNotifier {
     notifyListeners();
   }
 
-  /*void updateIsFavourite(String id, Product product) async {
-    final prodIndex = _items.indexWhere((prod) => prod.id == id);
-    final url =
-        'https://e-shop-today-default-rtdb.firebaseio.com/products/$id.json';
-    await http.patch(Uri.parse(url),
-        body: json.encode({'isFavorite': product.isFavourite}));
-    _items[prodIndex] = product;
-    notifyListeners();
-  }
-*/
   Future<void> UpdateProduct(String id, Product newProduct) async {
     final prodIndex = _items.indexWhere((prod) => prod.id == id);
     if (prodIndex >= 0) {

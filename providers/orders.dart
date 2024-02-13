@@ -81,17 +81,4 @@ class Orders with ChangeNotifier {
     );
     notifyListeners();
   }
-  /*
-  void addOrder(List<CartItem> cartProducts, double total) {
-  orders.add(
-    OrderItem(
-      id: DateTime.now().toString(),
-      datetime: DateTime.now(),
-      amount: total,
-      products: cartProducts,
-    ),
-  );
-  notifyListeners();
-}
-  */
 }
