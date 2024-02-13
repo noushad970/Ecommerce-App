@@ -1,3 +1,4 @@
+import 'package:e_shop_today/screens/product_overview_screen.dart';
 import 'package:flutter/material.dart';
 
 class HomeAdmin extends StatelessWidget {
@@ -5,6 +6,22 @@ class HomeAdmin extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Home Screen'),
+      ),
+      body: Center(
+        child: ElevatedButton(
+          onPressed: () {
+            // Navigate to the other screen
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => ProductOverviewScreen()),
+            );
+          },
+          child: Text('Go to Other Screen'),
+        ),
+      ),
+    );
   }
 }
