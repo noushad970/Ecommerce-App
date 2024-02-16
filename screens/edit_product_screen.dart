@@ -76,32 +76,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
     // fetchData();
   }
 
-  /*
-  @override
-  void didChangeDependencies() {
-    if (_isInit1) {
-      final productId = ModalRoute.of(context)!.settings.arguments; //?? "";
-      // ignore: unnecessary_null_comparison
-      if (productId != null) {
-        _editedProduct = Provider.of<Products>(context, listen: false)
-            .findByID(productId.toString());
-
-        _initValue = {
-          'title': _editedProduct.title,
-          'discription': _editedProduct.Discription,
-          'imageUrl': '',
-          'price': _editedProduct.price.toString(),
-        };
-        _ImageUrlController.text = _editedProduct.imageUrl;
-      }
-    }
-    _isInit1 = false;
-    final id = ModalRoute.of(context)!.settings.arguments as String;
-    Provider.of<Products>(context).DeleteProduct(id);
-    super.didChangeDependencies();
-    // fetchData();
-  }
-*/
+ 
   @override
   void dispose() {
     _imageUrlFocusedNode.removeListener(_UpdateImgUrl);
@@ -131,9 +106,6 @@ class _EditProductScreenState extends State<EditProductScreen> {
   Future<void> _saveForm() async {
     final isValid = _form.currentState!.validate(); //
 
-    // if (!isValid) {
-    //   return;
-    // }
     _form.currentState!.save();
     setState(() {
       _isLoading = true;

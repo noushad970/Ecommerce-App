@@ -1,7 +1,11 @@
 import 'package:e_shop_today/Admin/AdminLogin.dart';
+import 'package:e_shop_today/main.dart';
 import 'package:e_shop_today/providers/auth.dart';
+import 'package:e_shop_today/Admin/AdminLogin.dart';
 import 'package:e_shop_today/screens/Orders_Screen.dart';
 import 'package:e_shop_today/screens/auth_screen.dart';
+import 'package:e_shop_today/screens/product_detail_screen.dart';
+import 'package:e_shop_today/screens/product_overview_screen.dart';
 import 'package:e_shop_today/screens/users_product_Screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -32,14 +36,14 @@ class AppDrawer extends StatelessWidget {
                 Navigator.of(context)
                     .pushReplacementNamed(OrderScreen.routeName);
               }),
-          //  Divider(),
-          // ListTile(
-          //     leading: Icon(Icons.admin_panel_settings),
-          //     title: Text('Admin Panel'),
-          //     onTap: () {
-          //       Navigator.of(context)
-          //           .pushReplacementNamed(AdminLogin.routeName);
-          //     }),
+          Divider(),
+          ListTile(
+              leading: Icon(Icons.admin_panel_settings),
+              title: Text('Admin Panel'),
+              onTap: () {
+                Navigator.of(context)
+                    .pushReplacementNamed(AdminLogin.routeName);
+              }),
           Divider(),
           ListTile(
               leading: Icon(Icons.edit),

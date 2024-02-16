@@ -15,6 +15,7 @@ enum FilterOptions {
 }
 
 class ProductOverviewScreen extends StatefulWidget {
+  static const routeName = '/product-overview-screen';
   @override
   _ProductOverviewScreenState createState() => _ProductOverviewScreenState();
 }
@@ -95,7 +96,7 @@ class _ProductOverviewScreenState extends State<ProductOverviewScreen> {
             ),
           ],
           title: Text('MyShop'),
-           backgroundColor: Color.fromARGB(255, 0, 187, 255),
+          backgroundColor: Color.fromARGB(255, 0, 187, 255),
         ),
         drawer: AppDrawer(),
         body: _isLoading

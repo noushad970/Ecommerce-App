@@ -1,6 +1,5 @@
 import 'package:e_shop_today/Admin/AdminLogin.dart';
-import 'package:e_shop_today/Admin/All_Product.dart';
-import 'package:e_shop_today/Admin/HomeAdmin.dart';
+import 'package:e_shop_today/Admin/AdminProductView.dart';
 import 'package:e_shop_today/providers/auth.dart';
 import 'package:e_shop_today/providers/cart.dart';
 import 'package:e_shop_today/providers/orders.dart';
@@ -10,7 +9,6 @@ import 'package:e_shop_today/screens/Orders_Screen.dart';
 import 'package:e_shop_today/screens/edit_product_screen.dart';
 import 'package:e_shop_today/screens/splash_screen.dart';
 import 'package:e_shop_today/screens/users_product_Screen.dart';
-//import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import './screens/product_overview_screen.dart';
@@ -50,7 +48,7 @@ class MyApp extends StatelessWidget {
                 auth.userId!,
                 previousProducts == null ? [] : previousProducts.orders),
             create: (_) => Orders('', '', []),
-          )
+          ),
         ],
         child: Consumer<Auth>(
             builder: (ctx, auth, _) => MaterialApp(
@@ -76,9 +74,11 @@ class MyApp extends StatelessWidget {
                       UserProductsScreen.routeName: (ctx) =>
                           UserProductsScreen(),
                       EditProductScreen.routeName: (ctx) => EditProductScreen(),
-                      //AdminLogin.routeName: (ctx) => AdminLogin(),
-                      //AdminPanelPage.routeName:(ctx) => AdminPanelPage(),
-                      // HomeAdmin.routeName: (ctx) => HomeAdmin(),
+                      AdminLogin.routeName: (ctx) => AdminLogin(),
+
+                      // AdminPanelPage.routeName: (ctx) => AdminPanelPage(),
+                      //  ProductListScreen.routeName(ctx) => ProductListScreen(),
+                      // ProductListScreen.routeName(ctx) => ProductListScreen()
                     })));
   }
 }

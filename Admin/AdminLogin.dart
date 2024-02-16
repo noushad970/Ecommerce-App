@@ -1,6 +1,7 @@
 //import 'package:cloud_firestore/cloud_firestore.dart';
-/*import 'dart:async';
+import 'dart:async';
 import 'dart:convert';
+import 'package:e_shop_today/Widgets/App_Drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:e_shop_today/Admin/HomeAdmin.dart';
 import 'package:http/http.dart' as http;
@@ -58,6 +59,7 @@ class _AdminLoginState extends State<AdminLogin> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: AppDrawer(),
       backgroundColor: Color(0xFFededeb),
       body: Container(
         child: Stack(
@@ -224,10 +226,10 @@ class _AdminLoginState extends State<AdminLogin> {
         Route route = MaterialPageRoute(builder: (context) => HomeAdmin());
         Navigator.pushReplacement(context, route);
       }
+     // notifyListeners();
     } catch (e) {
       print("Errrrrorrrr");
       throw e;
     }
   }
 }
-*/
