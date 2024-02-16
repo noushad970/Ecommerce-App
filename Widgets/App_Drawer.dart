@@ -1,11 +1,7 @@
 import 'package:e_shop_today/Admin/AdminLogin.dart';
-import 'package:e_shop_today/main.dart';
 import 'package:e_shop_today/providers/auth.dart';
-import 'package:e_shop_today/Admin/AdminLogin.dart';
 import 'package:e_shop_today/screens/Orders_Screen.dart';
 import 'package:e_shop_today/screens/auth_screen.dart';
-import 'package:e_shop_today/screens/product_detail_screen.dart';
-import 'package:e_shop_today/screens/product_overview_screen.dart';
 import 'package:e_shop_today/screens/users_product_Screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -57,10 +53,11 @@ class AppDrawer extends StatelessWidget {
               leading: Icon(Icons.exit_to_app),
               title: Text('Logout'),
               onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => AuthScreen()),
-                );
+                Navigator.of(context).pop();
+                Provider.of<Auth>(context, listen: false).logout();
+
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => AuthScreen()));
               }),
         ],
       ),

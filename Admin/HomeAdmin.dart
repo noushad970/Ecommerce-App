@@ -42,12 +42,21 @@ class _HomeAdminState extends State<HomeAdmin> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            ListTile(
-                leading: Icon(Icons.production_quantity_limits),
-                title: Text('Manage Products'),
-                onTap: () {
-                  print('Manage Products button pressed');
-                }),
+            SizedBox(
+              width: 200,
+              height: 50,
+              child: ElevatedButton(
+                onPressed: () {
+                  // Handle 'Manage Accounts' button press
+                  print('Manage Post button pressed');
+                },
+                child: Text(
+                  'Manage Posts',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 16),
+                ),
+              ),
+            ),
             SizedBox(height: 20),
             SizedBox(
               width: 200,

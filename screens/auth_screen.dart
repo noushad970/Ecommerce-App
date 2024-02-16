@@ -169,6 +169,9 @@ class _AuthCardState extends State<AuthCard> {
     }
   }
 
+  void clearLogin(){
+    
+  }
   @override
   Widget build(BuildContext context) {
     final deviceSize = MediaQuery.of(context).size;

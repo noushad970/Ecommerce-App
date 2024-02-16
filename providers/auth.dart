@@ -95,9 +95,10 @@ class Auth with ChangeNotifier {
   }
 
   Future<void> logout() async {
-    _userId = null;
+    // _userId = null;
     // _token = null;
     // _expiryDate = null;
+
     if (_authTimer != null) {
       _authTimer?.cancel();
       _authTimer = null;
@@ -105,6 +106,7 @@ class Auth with ChangeNotifier {
     notifyListeners();
     final prefs = await SharedPreferences.getInstance();
     prefs.clear();
+    notifyListeners();
   }
 
   void _autoLogout() {
