@@ -2,6 +2,7 @@ import 'package:e_shop_today/Admin/AdminProductView.dart';
 import 'package:e_shop_today/Widgets/App_Drawer.dart';
 import 'package:e_shop_today/screens/product_overview_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class HomeAdmin extends StatefulWidget {
   static const routeName = '/Admin-Home-Login';
@@ -45,16 +46,18 @@ class _HomeAdminState extends State<HomeAdmin> {
             SizedBox(
               width: 200,
               height: 50,
-              child: ElevatedButton(
-                onPressed: () {
-                  // Handle 'Manage Accounts' button press
-                  print('Manage Post button pressed');
-                },
-                child: Text(
-                  'Manage Posts',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 16),
+              child: ListTile(
+                leading: Icon(Icons.edit),
+                title: Text(
+                  'Manage Products',
+                  style: TextStyle(
+                      color: Colors.black, backgroundColor: Colors.white),
                 ),
+                onTap: () {
+                  Navigator.of(context).pushReplacementNamed(
+                      AdminProductOverviewScreen.routeName);
+                },
+                iconColor: Colors.white,
               ),
             ),
             SizedBox(height: 20),

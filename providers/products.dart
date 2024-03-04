@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:e_shop_today/providers/AdminProduct.dart';
 import 'package:flutter/material.dart';
 import 'product.dart';
 import 'package:http/http.dart' as http;
@@ -7,8 +8,13 @@ class Products with ChangeNotifier {
   // var _showFavouriteOnly = false;
 
   List<Product> _items = [];
+  List<AdminProduct> _itemsAdmin = [];
   List<Product> get items {
     return [..._items];
+  }
+
+  List<AdminProduct> get itemsAdmin {
+    return [..._itemsAdmin];
   }
 
   List<Product> get favouriteItem {
@@ -17,7 +23,7 @@ class Products with ChangeNotifier {
 
   final String authToken;
   final String userId;
-  Products(this.authToken, this.userId, this._items);
+  Products(this.authToken, this.userId, this._items, this._itemsAdmin);
 
   Future<void> fetchAndSetProduct([bool filterByUser = false]) async {
     String filterString =
@@ -28,6 +34,7 @@ class Products with ChangeNotifier {
       final response = await http.get(Uri.parse(url));
       // print(json.decode(response.body));
       final ExtractedData = json.decode(response.body) as Map<String, dynamic>;
+      //date: 3.5.2024 when removed
       if (ExtractedData == null) {
         return;
       }
@@ -49,6 +56,34 @@ class Products with ChangeNotifier {
       });
 
       _items = LoadedProducts;
+      notifyListeners();
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  Future<void> AdminfetchAndSetProduct([bool filterByUser = false]) async {
+    var url =
+        'https://e-shop-today-default-rtdb.firebaseio.com/products.json?auth=$authToken';
+    try {
+      final response = await http.get(Uri.parse(url));
+      // print(json.decode(response.body));
+      final ExtractedData = json.decode(response.body) as Map<String, dynamic>;
+      if (ExtractedData == null) {
+        return;
+      }
+      final List<AdminProduct> LoadedProducts = [];
+      ExtractedData.forEach((ProdId, ProdData) {
+        LoadedProducts.add(AdminProduct(
+          id: ProdId,
+          title: ProdData['title'],
+          Discription: ProdData['discription'],
+          imageUrl: ProdData['imageUrl'],
+          price: ProdData['price'],
+        ));
+      });
+
+      _itemsAdmin = LoadedProducts;
       notifyListeners();
     } catch (error) {
       throw error;

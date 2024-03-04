@@ -18,6 +18,8 @@ class Product with ChangeNotifier {
       required this.price,
       this.isFavourite = false});
 
+  get items => null;
+
   Future<void> toggleFavouriteStatus(String token, String userId) async {
     final oldState = isFavourite;
     isFavourite = !isFavourite;

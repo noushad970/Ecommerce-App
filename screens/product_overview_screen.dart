@@ -26,9 +26,7 @@ class _ProductOverviewScreenState extends State<ProductOverviewScreen> {
   var _isLoading = false;
   @override
   void initState() {
-    // Future.delayed(Duration.zero).then((_) {
-    //   Provider.of<Products>(context).fetchAndSetProduct();
-    // });
+    
     super.initState();
   }
 

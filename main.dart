@@ -1,5 +1,6 @@
 import 'package:e_shop_today/Admin/AdminLogin.dart';
 import 'package:e_shop_today/Admin/AdminProductView.dart';
+import 'package:e_shop_today/Admin/ProductDetailScreenAdmin.dart';
 import 'package:e_shop_today/providers/auth.dart';
 import 'package:e_shop_today/providers/cart.dart';
 import 'package:e_shop_today/providers/orders.dart';
@@ -33,11 +34,13 @@ class MyApp extends StatelessWidget {
           ),
           ChangeNotifierProvider(create: (ctx) => Auth()),
           ChangeNotifierProxyProvider<Auth, Products>(
-            create: (ctx) => Products('', '', []),
+            create: (ctx) => Products('', '', [], []),
             update: (ctx, auth, previousProductsProviderState) => Products(
-                auth.token!,
-                auth.userId!,
-                previousProductsProviderState!.items),
+              auth.token!,
+              auth.userId!,
+              previousProductsProviderState!.items,
+              previousProductsProviderState!.itemsAdmin,
+            ),
           ),
           ChangeNotifierProvider.value(
             value: Cart(),
@@ -69,6 +72,8 @@ class MyApp extends StatelessWidget {
                     routes: {
                       ProductDetailScreen.routeName: (ctx) =>
                           ProductDetailScreen(),
+                      AdminProductDetailScreen.routeName: (ctx) =>
+                          AdminProductDetailScreen(),
                       CartScreen.routeName: (ctx) => CartScreen(),
                       OrderScreen.routeName: (ctx) => OrderScreen(),
                       UserProductsScreen.routeName: (ctx) =>
@@ -77,7 +82,8 @@ class MyApp extends StatelessWidget {
                       AdminLogin.routeName: (ctx) => AdminLogin(),
 
                       // AdminPanelPage.routeName: (ctx) => AdminPanelPage(),
-                      //  ProductListScreen.routeName(ctx) => ProductListScreen(),
+                      AdminProductOverviewScreen.routeName: (ctx) =>
+                          AdminProductOverviewScreen(),
                       // ProductListScreen.routeName(ctx) => ProductListScreen()
                     })));
   }
