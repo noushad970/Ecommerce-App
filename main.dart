@@ -1,5 +1,6 @@
 import 'package:e_shop_today/Admin/AdminLogin.dart';
 import 'package:e_shop_today/Admin/AdminProductView.dart';
+import 'package:e_shop_today/Admin/AdminUserScreenControl.dart';
 import 'package:e_shop_today/Admin/ProductDetailScreenAdmin.dart';
 import 'package:e_shop_today/providers/auth.dart';
 import 'package:e_shop_today/providers/cart.dart';
@@ -84,6 +85,8 @@ class MyApp extends StatelessWidget {
                       // AdminPanelPage.routeName: (ctx) => AdminPanelPage(),
                       AdminProductOverviewScreen.routeName: (ctx) =>
                           AdminProductOverviewScreen(),
+                      UserListScreenAdmin.routeName: (ctx) =>
+                          UserListScreenAdmin()
                       // ProductListScreen.routeName(ctx) => ProductListScreen()
                     })));
   }

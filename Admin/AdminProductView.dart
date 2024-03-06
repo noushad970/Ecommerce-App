@@ -2,7 +2,6 @@ import 'package:e_shop_today/Admin/ProductGridsAdmin.dart';
 import 'package:e_shop_today/Widgets/App_Drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../Widgets/product_grid.dart';
 import '../providers/products.dart';
 
 class AdminProductOverviewScreen extends StatefulWidget {
@@ -14,7 +13,7 @@ class AdminProductOverviewScreen extends StatefulWidget {
 
 class _AdminProductOverviewScreenState
     extends State<AdminProductOverviewScreen> {
-  bool _showOnlyFavourite = false;
+
   var _isInit = true;
   var _isLoading = false;
   @override

@@ -1,9 +1,7 @@
 import 'package:e_shop_today/Widgets/App_Drawer.dart';
 import 'package:e_shop_today/providers/cart.dart';
-import 'package:e_shop_today/providers/product.dart';
 import 'package:e_shop_today/screens/Cart_Screen.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart';
 import 'package:provider/provider.dart';
 import '../Widgets/product_grid.dart';
 import '../providers/products.dart';
