@@ -24,7 +24,6 @@ class _ProductOverviewScreenState extends State<ProductOverviewScreen> {
   var _isLoading = false;
   @override
   void initState() {
-    
     super.initState();
   }
 
@@ -91,7 +90,7 @@ class _ProductOverviewScreenState extends State<ProductOverviewScreen> {
               ),
             ),
           ],
-          title: Text('MyShop'),
+          title: Text('Store'),
           backgroundColor: Color.fromARGB(255, 0, 187, 255),
         ),
         drawer: AppDrawer(),
