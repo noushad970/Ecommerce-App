@@ -3,7 +3,7 @@ import 'package:e_shop_today/Widgets/App_Drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/products.dart';
-
+//when give id pass of admin panel the all product screen will open
 class AdminProductOverviewScreen extends StatefulWidget {
   static const routeName = '/admin-product-overview-screen';
   @override

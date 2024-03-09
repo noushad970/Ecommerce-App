@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 
+//admin all product contructors
 class AdminProduct with ChangeNotifier {
   final String id;
   final String title;

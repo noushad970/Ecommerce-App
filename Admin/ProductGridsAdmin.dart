@@ -2,7 +2,7 @@ import 'package:e_shop_today/Admin/ProductItemsAdmin.dart';
 import 'package:e_shop_today/providers/products.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
+//a product container
 class productGridAdmin extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

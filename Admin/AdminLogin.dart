@@ -29,15 +29,14 @@ class _AdminLoginState extends State<AdminLogin> {
 
       final response = await http.get(Uri.parse(apiUrl));
       final responseData = json.decode(response.body);
-      print("Data: $responseData");
+
       setState(() {
         adminUser = responseData['AdminUser'];
         password = responseData['Password'].toString();
-        print("Data: $responseData");
+       
         isLoading = false;
       });
     } catch (error) {
-      print('Error fetching data: $error');
       setState(() {
         isLoading = false;
       });
@@ -210,7 +209,6 @@ class _AdminLoginState extends State<AdminLogin> {
               "Your id is not correct",
               style: TextStyle(fontSize: 18.0),
             )));
-        print("User Wrong: " + adminUser!);
       } else if (password != userpasswordcontroller.text.trim()) {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
             backgroundColor: Colors.orangeAccent,
@@ -218,14 +216,11 @@ class _AdminLoginState extends State<AdminLogin> {
               "Your password is not correct",
               style: TextStyle(fontSize: 18.0),
             )));
-        print("Password Wrong: " + password!);
       } else {
-        print("All Ok");
         Route route = MaterialPageRoute(builder: (context) => HomeAdmin());
         Navigator.pushReplacement(context, route);
       }
     } catch (e) {
-      print("Errrrrorrrr");
       throw e;
     }
   }

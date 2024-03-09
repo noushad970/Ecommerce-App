@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../Widgets/product_grid.dart';
 import '../providers/products.dart';
-//import '../Widgets/badge.dart';
 
 enum FilterOptions {
   Favourite,
@@ -40,7 +39,6 @@ class _ProductOverviewScreenState extends State<ProductOverviewScreen> {
       });
     }
     _isInit = false;
-    // TODO: implement didChangeDependencies
     super.didChangeDependencies();
   }
 
@@ -55,10 +53,8 @@ class _ProductOverviewScreenState extends State<ProductOverviewScreen> {
                 // print(SelectedValue);
                 setState(() {
                   if (SelectedValue == FilterOptions.Favourite) {
-                    // productContainer.showFavouriteOnly();
                     _showOnlyFavourite = true;
                   } else {
-                    //  productContainer.showAll();
                     _showOnlyFavourite = false;
                   }
                 });
