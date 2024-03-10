@@ -1,7 +1,6 @@
 import 'package:e_shop_today/providers/products.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-//admin product detail after click a product on admin panel
 
 class AdminProductDetailScreen extends StatelessWidget {
  

@@ -36,7 +36,6 @@ class ProductItem extends StatelessWidget {
             leading: Consumer<Product>(
               builder: (ctx, product, _) => IconButton(
                   onPressed: () {
-                    //this will execute that the file is favourite or not
                     product.toggleFavouriteStatus(
                         authData.token.toString(), authData.userId.toString());
                     if (product.isFavourite) {

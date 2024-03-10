@@ -23,7 +23,6 @@ class CartItem extends StatelessWidget {
           padding: EdgeInsets.only(right: 20),
         ),
         direction: DismissDirection.endToStart,
-        //this widget is to make confirm with the decision
         confirmDismiss: (direction) {
           return showDialog(
               context: context,

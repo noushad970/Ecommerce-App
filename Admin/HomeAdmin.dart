@@ -1,7 +1,6 @@
 import 'package:e_shop_today/Admin/AdminProductView.dart';
 import 'package:e_shop_today/Widgets/App_Drawer.dart';
 import 'package:flutter/material.dart';
-//First page after admin login
 
 class HomeAdmin extends StatefulWidget {
   static const routeName = '/Admin-Home-Login';

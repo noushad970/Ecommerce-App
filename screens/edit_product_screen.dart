@@ -16,7 +16,6 @@ class _EditProductScreenState extends State<EditProductScreen> {
   final _priceFocusNode = FocusNode();
   final _discriptionNode = FocusNode();
 
-  // ignore: non_constant_identifier_names
   final _ImageUrlController = TextEditingController();
   final _imageUrlFocusedNode = FocusNode();
   final _form = GlobalKey<FormState>();
@@ -45,19 +44,13 @@ class _EditProductScreenState extends State<EditProductScreen> {
     super.initState();
   }
 
-  //problem is not taking input in add product when the full function is applied
-
+ 
   @override
   void didChangeDependencies() {
     if (_isInit1) {
       final args = ModalRoute.of(context)!.settings.arguments;
       if (args != null) {
-        final productId = args.toString(); // Hoping only string will be there.
-        /// Rest of the code
-
-        //final productId = ModalRoute.of(context)!.settings.arguments as String ;//?? "";
-        // ignore: unnecessary_null_comparison
-
+        final productId = args.toString(); 
         _editedProduct =
             Provider.of<Products>(context, listen: false).findByID(productId);
 
@@ -66,8 +59,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
           'discription': _editedProduct.Discription,
           'imageUrl': '',
           'price': _editedProduct.price.toString(),
-          //'isFavorite': _editedProduct.isFavourite.toString(),
-        };
+         };
         _ImageUrlController.text = _editedProduct.imageUrl;
       }
     }
@@ -102,7 +94,6 @@ class _EditProductScreenState extends State<EditProductScreen> {
     }
   }
 
-  //problem is not taking input in add product when the full function is applied
   Future<void> _saveForm() async {
     final isValid = _form.currentState!.validate(); //
 
@@ -110,7 +101,6 @@ class _EditProductScreenState extends State<EditProductScreen> {
     setState(() {
       _isLoading = true;
     });
-    //causing error.when i edit and save product it took another item placeholder
     if (_editedProduct.Discription != null) {
       try {
         Provider.of<Products>(context, listen: false)
@@ -201,7 +191,6 @@ class _EditProductScreenState extends State<EditProductScreen> {
                             FocusScope.of(context)
                                 .requestFocus(_discriptionNode);
                           },
-                          //this widget is use to display the error input given by a user in input field or form field.
                           validator: (value) {
                             if (value!.isEmpty) {
                               return 'Please enter price';

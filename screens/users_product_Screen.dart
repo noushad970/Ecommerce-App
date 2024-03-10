@@ -14,7 +14,6 @@ class UserProductsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //  final productData = Provider.of<Products>(context);
     return Scaffold(
       appBar: AppBar(
         title: Text('Your Products'),
@@ -30,7 +29,6 @@ class UserProductsScreen extends StatelessWidget {
       drawer: AppDrawer(),
       body: FutureBuilder(
         future: _refreshProduct(context),
-        // initialData: InitialData,
         builder: (ctx, snapshot) =>
             snapshot.connectionState == ConnectionState.waiting
                 ? Center(
